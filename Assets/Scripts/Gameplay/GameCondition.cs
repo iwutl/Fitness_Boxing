@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 public class GameCondition : MonoBehaviour
 {
-    public static GameCondition thisInstance;
+    public static GameCondition gameInstance;
     public int leftHitScore, rightHitScore, sitScore;
     public bool isGameReady, isGameEnd;
 
     private void Awake() {
-        if(thisInstance == null)
+        if(gameInstance == null)
         {
-            thisInstance = this;
+            gameInstance = this;
         }
 
         leftHitScore = 0;

@@ -11,7 +11,7 @@ public class GameTimer : MonoBehaviour
 
     public void GameInitiate()
     {
-        totalGameTime = 300;
+        totalGameTime = 10;
         timerIsRunning = true;
     }
 
