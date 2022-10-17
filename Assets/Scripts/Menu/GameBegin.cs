@@ -34,7 +34,7 @@ public class GameBegin : MonoBehaviour
     {
         while(countDownTimer > 0)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.5f);
 
             LeanTween.scale(countDownText.gameObject, new Vector3(1.5f, 1.5f, 1f), 0.5f).setDelay(0.25f).setEase(LeanTweenType.easeOutElastic);
 

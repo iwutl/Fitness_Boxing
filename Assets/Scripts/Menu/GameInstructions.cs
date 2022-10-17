@@ -9,6 +9,11 @@ public class GameInstructions : MonoBehaviour
         PageLoad(currentPage);
     }
 
+    public void PageManipulation()
+    {
+        currentPage++;
+    }
+
     public void PageLoad(int count)
     {
         currentPage = count;

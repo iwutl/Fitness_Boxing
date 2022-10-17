@@ -5,11 +5,8 @@ using System.Collections.Generic;
 public class GameCondition : MonoBehaviour
 {
     public static GameCondition thisInstance;
-    public GameObject ball, currentBall;
-    public List<Transform> spawnPosition;
-    public int hitScore, missScore;
+    public int leftHitScore, rightHitScore, sitScore;
     public bool isGameReady, isGameEnd;
-    Transform parentObject;
 
     private void Awake() {
         if(thisInstance == null)
@@ -17,15 +14,9 @@ public class GameCondition : MonoBehaviour
             thisInstance = this;
         }
 
-        hitScore = 0;
-        missScore = 0;
-
-        parentObject = GetComponent<Transform>();
-        
-        for(int i = 0; i < parentObject.childCount; i++)
-        {
-            spawnPosition.Add (parentObject.GetChild(i));
-        }
+        leftHitScore = 0;
+        rightHitScore = 0;
+        sitScore = 0;
     }
 
     public void GameReady(bool state)
@@ -36,20 +27,6 @@ public class GameCondition : MonoBehaviour
     public void GameEnd(bool state)
     {
         isGameEnd = state;
-    }
-
-    private void Update() {
-        if(isGameReady)
-        {
-            int randomNo = Random.Range(0, spawnPosition.Count);
-            currentBall = GameObject.Instantiate(ball, spawnPosition[randomNo].position, spawnPosition[randomNo].rotation);
-            GameReady(false);
-        }
-        if(isGameEnd)
-        {
-            Destroy(currentBall);
-            GameEnd(false);
-        }
     }
 
     public void GameEndQuit()
