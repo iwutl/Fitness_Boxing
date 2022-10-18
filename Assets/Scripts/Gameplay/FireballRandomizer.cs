@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireballRandomizer : MonoBehaviour
 {
     [Header("Input")]
-    public Transform firingTarget;
+    public Transform firingTarget, sitTarget;
     public Transform[] firingPoints;
     public GameObject[] firePrefab;
     public int sampleScale;
@@ -31,6 +31,7 @@ public class FireballRandomizer : MonoBehaviour
         {
             firingPoints[i].LookAt(firingTarget);
         }
+        sitTarget.LookAt(firingTarget);
     }
 
     void Update()
@@ -52,7 +53,7 @@ public class FireballRandomizer : MonoBehaviour
         }
         else
         {
-            currentBall = Instantiate(firePrefab[1],firingPoints[1].position,(firingPoints[1].rotation * firePrefab[1].transform.rotation));
+            currentBall = Instantiate(firePrefab[1], sitTarget.position,(sitTarget.rotation * firePrefab[1].transform.rotation));
         }
     }
 }
