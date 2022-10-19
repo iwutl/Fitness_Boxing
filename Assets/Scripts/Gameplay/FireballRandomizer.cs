@@ -5,9 +5,8 @@ using UnityEngine;
 public class FireballRandomizer : MonoBehaviour
 {
     [Header("Input")]
-    public Transform firingTarget, sitTarget;
-    public Transform[] firingPoints;
-    public GameObject[] firePrefab;
+    public Transform[] firingTarget,firingPoints,sitTarget;
+    public GameObject[] firePrefab,logPrefab;
     public int sampleScale;
 
     [Header("Output")]
@@ -29,9 +28,13 @@ public class FireballRandomizer : MonoBehaviour
 
         for(int i = 0; i < firingPoints.Length; i++)
         {
-            firingPoints[i].LookAt(firingTarget);
+            firingPoints[i].LookAt(firingTarget[1]); // only the centre point (current element 1)
         }
-        sitTarget.LookAt(firingTarget);
+        
+        for(int i=0 ; i< sitTarget.Length;i++)
+        {
+            sitTarget[i].LookAt(firingTarget[i]); // all elements
+        }
     }
 
     void Update()
@@ -49,11 +52,15 @@ public class FireballRandomizer : MonoBehaviour
 
         if(currentPos>=0)
         {
-            currentBall = Instantiate(firePrefab[0],firingPoints[currentPos].position,firingPoints[currentPos].rotation);
+            int randomBall = Random.Range(0,firePrefab.Length);
+
+            currentBall = Instantiate(firePrefab[randomBall],firingPoints[currentPos].position,firingPoints[currentPos].rotation);
         }
         else
         {
-            currentBall = Instantiate(firePrefab[1], sitTarget.position,(sitTarget.rotation * firePrefab[1].transform.rotation));
+            int randomLog = Random.Range(0,logPrefab.Length);
+
+            currentBall = Instantiate(logPrefab[randomLog], sitTarget[randomLog].position,(sitTarget[randomLog].rotation * logPrefab[randomLog].transform.rotation));
         }
     }
 }
