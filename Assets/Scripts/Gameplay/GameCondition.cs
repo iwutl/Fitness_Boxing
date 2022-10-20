@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class GameCondition : MonoBehaviour
 {
     public static GameCondition gameInstance;
-    public int leftHitScore, rightHitScore, sitScore;
+    public int leftHandScore, rightHandScore, ballMissedScore, blockHandScore, blockSitScore, blockStrifeScore;
     public bool isGameReady, isGameEnd;
 
     private void Awake() {
@@ -14,9 +14,11 @@ public class GameCondition : MonoBehaviour
             gameInstance = this;
         }
 
-        leftHitScore = 0;
-        rightHitScore = 0;
-        sitScore = 0;
+        leftHandScore = 0;
+        rightHandScore = 0;
+        ballMissedScore = 0;
+        blockSitScore = 0;
+        blockStrifeScore = 0;
     }
 
     public void GameReady(bool state)

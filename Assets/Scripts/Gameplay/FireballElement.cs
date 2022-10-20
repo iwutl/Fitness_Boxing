@@ -18,23 +18,7 @@ public class FireballElement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other) {
-        if(other.transform.tag == "RightHand")
-        {
-            GameCondition.gameInstance.rightHitScore++;
-            UITextReference.uiInstance.rightHitScore.text = GameCondition.gameInstance.rightHitScore.ToString();
-        }
-        else if(other.transform.tag == "LeftHand")
-        {
-            GameCondition.gameInstance.leftHitScore++;
-            UITextReference.uiInstance.leftHitScore.text = GameCondition.gameInstance.leftHitScore.ToString();
-        }
-        else 
-        {
-            GameCondition.gameInstance.sitScore++;
-            UITextReference.uiInstance.sitScore.text = GameCondition.gameInstance.sitScore.ToString();
-        }
-        Destroy(transform.gameObject);
-        GameCondition.gameInstance.GameReady(true);
+    private void OnCollisionEnter(Collision other) {        
+        
     }
 }

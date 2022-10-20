@@ -4,7 +4,7 @@ using TMPro;
 public class UITextReference : MonoBehaviour
 {
     public static UITextReference uiInstance;
-    public TextMeshProUGUI leftHitScore, rightHitScore, sitScore;
+    public TextMeshProUGUI leftHandScore, rightHandScore, blockSitScore, blockStrifeScore;
 
     private void Awake() {
         if(uiInstance == null)
