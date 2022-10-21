@@ -10,12 +10,14 @@ public class FireballRandomizer : MonoBehaviour
     public int sampleScale;
 
     [Header("Output")]
-    public int currentPos;
+    public int currentPos, totalBall, totalBlock;
     public List<int> firingType;
     public GameObject currentBall;
 
     void Start()
     {
+        totalBall = 0;
+        totalBlock = 0;
         for(int i=0;i<sampleScale;i++)
         {
             for(int j=0;j<firingPoints.Length;j++)
@@ -55,12 +57,18 @@ public class FireballRandomizer : MonoBehaviour
             int randomBall = Random.Range(0,firePrefab.Length);
 
             currentBall = Instantiate(firePrefab[randomBall],firingPoints[currentPos].position,firingPoints[currentPos].rotation);
+
+            totalBall++;
         }
         else
         {
             int randomLog = Random.Range(0,logPrefab.Length);
 
             currentBall = Instantiate(logPrefab[randomLog], sitTarget[randomLog].position,(sitTarget[randomLog].rotation * logPrefab[randomLog].transform.rotation));
+
+            totalBlock++;
         }
+
+        Debug.Log("Total_Ball:  " + totalBall + "  " + "Total_Block:  " + totalBlock);
     }
 }

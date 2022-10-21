@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2202475663568504083}
   m_Layer: 0
   m_Name: Sitting_Block
-  m_TagString: Untagged
+  m_TagString: BlockSit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

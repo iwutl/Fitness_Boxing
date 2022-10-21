@@ -17,8 +17,4 @@ public class FireballElement : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
-    private void OnCollisionEnter(Collision other) {        
-        
-    }
 }

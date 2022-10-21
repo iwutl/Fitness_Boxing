@@ -2,17 +2,16 @@ using UnityEngine;
 
 public class ObjectExplosion : MonoBehaviour
 {
-    public ParticleSystem objectSet;
     float min, max, rad, desDel;
 
     private void Start() {
         min = 10f;
         max = 50f;
         rad = 1.0f;
-        desDel = 1.0f;
+        desDel = 0.5f;
     }
 
-    public void Explode()
+    void Awake()
     {
         foreach(Transform t in transform)
         {
@@ -25,7 +24,6 @@ public class ObjectExplosion : MonoBehaviour
             }
 
             Destroy(t.gameObject, desDel);
-            Destroy(objectSet.gameObject);
         }
     }
 }

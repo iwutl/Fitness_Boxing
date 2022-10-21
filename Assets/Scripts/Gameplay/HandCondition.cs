@@ -7,16 +7,25 @@ public enum PlayerHand{
 public class HandCondition : MonoBehaviour
 {
     public PlayerHand currentHand;
+    public GameObject destroyBalls;
+    public Transform parentObject;
     private void OnCollisionEnter(Collision other) {
         if(other.transform.tag == "BallHit")
         {
             if(currentHand == PlayerHand.left)
             {
+                //GameObject create = Instantiate(destroyBalls);
+                //create.transform.SetParent(parentObject);
+                //create.transform.localPosition = parentObject.transform.localPosition;
+                //create.transform.localRotation = Quaternion.identity;
+                //create.transform.localScale = new Vector3(1, 1, 1);
                 GameCondition.gameInstance.leftHandScore++;
                 UITextReference.uiInstance.leftHandScore.text = GameCondition.gameInstance.leftHandScore.ToString();
             }
             else if(currentHand == PlayerHand.right )
             {
+                //GameObject create = Instantiate(destroyBalls);
+                //create.transform.SetParent(parentObject);
                 GameCondition.gameInstance.rightHandScore++;
                 UITextReference.uiInstance.rightHandScore.text = GameCondition.gameInstance.rightHandScore.ToString();
             }
@@ -56,7 +65,7 @@ public class HandCondition : MonoBehaviour
                 GameCondition.gameInstance.blockStrifeScore++;
             }
         }
-        Destroy(transform.gameObject);
+        Destroy(other.transform.gameObject);
         GameCondition.gameInstance.GameReady(true);
     }
 }
