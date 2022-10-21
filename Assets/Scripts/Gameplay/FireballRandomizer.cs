@@ -10,14 +10,12 @@ public class FireballRandomizer : MonoBehaviour
     public int sampleScale;
 
     [Header("Output")]
-    public int currentPos, totalBall, totalBlock;
+    public int currentPos;
     public List<int> firingType;
     public GameObject currentBall;
 
     void Start()
     {
-        totalBall = 0;
-        totalBlock = 0;
         for(int i=0;i<sampleScale;i++)
         {
             for(int j=0;j<firingPoints.Length;j++)
@@ -58,7 +56,8 @@ public class FireballRandomizer : MonoBehaviour
 
             currentBall = Instantiate(firePrefab[randomBall],firingPoints[currentPos].position,firingPoints[currentPos].rotation);
 
-            totalBall++;
+            GameCondition.gameInstance.totalBallSpawned++;
+            PlayerPrefs.SetString("totalBallSpawned", GameCondition.gameInstance.totalBallSpawned.ToString());
         }
         else
         {
@@ -66,9 +65,8 @@ public class FireballRandomizer : MonoBehaviour
 
             currentBall = Instantiate(logPrefab[randomLog], sitTarget[randomLog].position,(sitTarget[randomLog].rotation * logPrefab[randomLog].transform.rotation));
 
-            totalBlock++;
+            GameCondition.gameInstance.totalBlockSpawned++;
+            PlayerPrefs.SetString("totalBlockSpawned", GameCondition.gameInstance.totalBlockSpawned.ToString());
         }
-
-        Debug.Log("Total_Ball:  " + totalBall + "  " + "Total_Block:  " + totalBlock);
     }
 }

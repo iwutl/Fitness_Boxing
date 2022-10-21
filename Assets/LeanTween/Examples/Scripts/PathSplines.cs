@@ -5,13 +5,19 @@ using DentedPixel;
 public class PathSplines : MonoBehaviour {
 
 	public Transform[] trans;
+	public Vector3[] point;
 	
 	LTSpline cr;
 	private GameObject avatar1;
 
 	void OnEnable(){
 		// create the path
-		cr = new LTSpline( new Vector3[] {trans[0].position, trans[1].position, trans[2].position, trans[3].position, trans[4].position} );
+		for(int i = 0; i < trans.Length; i++)
+		{
+			point[i] = trans[i].position;
+		}
+		cr = new LTSpline(point);
+		// cr = new LTSpline( new Vector3[] {trans[0].position, trans[1].position, trans[2].position, trans[3].position, trans[4].position} );
 		// cr = new LTSpline( new Vector3[] {new Vector3(-1f,0f,0f), new Vector3(0f,0f,0f), new Vector3(4f,0f,0f), new Vector3(20f,0f,0f), new Vector3(30f,0f,0f)} );
 	}
 

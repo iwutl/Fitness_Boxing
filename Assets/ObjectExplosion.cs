@@ -4,15 +4,13 @@ public class ObjectExplosion : MonoBehaviour
 {
     float min, max, rad, desDel;
 
-    private void Start() {
-        min = 10f;
-        max = 50f;
-        rad = 1.0f;
-        desDel = 0.5f;
-    }
-
-    void Awake()
+    void OnEnable()
     {
+        min = 10f;
+        max = 20f;
+        rad = 3f;
+        desDel = 1f;
+
         foreach(Transform t in transform)
         {
             Rigidbody box = t.GetComponent<Rigidbody>();
@@ -23,7 +21,7 @@ public class ObjectExplosion : MonoBehaviour
                 box.AddExplosionForce(Random.Range(min, max), transform.position, rad);
             }
 
-            Destroy(t.gameObject, desDel);
+            Destroy(this.gameObject, desDel);
         }
     }
 }

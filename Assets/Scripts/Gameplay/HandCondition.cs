@@ -8,30 +8,26 @@ public class HandCondition : MonoBehaviour
 {
     public PlayerHand currentHand;
     public GameObject destroyBalls;
-    public Transform parentObject;
     private void OnCollisionEnter(Collision other) {
         if(other.transform.tag == "BallHit")
         {
+            Instantiate(destroyBalls, other.GetContact(0).point, Quaternion.identity);
             if(currentHand == PlayerHand.left)
             {
-                //GameObject create = Instantiate(destroyBalls);
-                //create.transform.SetParent(parentObject);
-                //create.transform.localPosition = parentObject.transform.localPosition;
-                //create.transform.localRotation = Quaternion.identity;
-                //create.transform.localScale = new Vector3(1, 1, 1);
                 GameCondition.gameInstance.leftHandScore++;
+                PlayerPrefs.SetString("leftHandScore", GameCondition.gameInstance.leftHandScore.ToString());
                 UITextReference.uiInstance.leftHandScore.text = GameCondition.gameInstance.leftHandScore.ToString();
             }
             else if(currentHand == PlayerHand.right )
             {
-                //GameObject create = Instantiate(destroyBalls);
-                //create.transform.SetParent(parentObject);
                 GameCondition.gameInstance.rightHandScore++;
+                PlayerPrefs.SetString("rightHandScore", GameCondition.gameInstance.rightHandScore.ToString());
                 UITextReference.uiInstance.rightHandScore.text = GameCondition.gameInstance.rightHandScore.ToString();
             }
             else if(currentHand == PlayerHand.none )
             {
                 GameCondition.gameInstance.ballMissedScore++;
+                PlayerPrefs.SetString("ballMissedScore", GameCondition.gameInstance.ballMissedScore.ToString());
             }
         }
         else if(other.transform.tag == "BlockSit")
@@ -39,15 +35,18 @@ public class HandCondition : MonoBehaviour
             if(currentHand == PlayerHand.left)
             {
                 GameCondition.gameInstance.blockHandScore++;
+                PlayerPrefs.SetString("blockHandScore", GameCondition.gameInstance.blockHandScore.ToString());
             }
             else if(currentHand == PlayerHand.right )
             {
                 GameCondition.gameInstance.blockHandScore++;
+                PlayerPrefs.SetString("blockHandScore", GameCondition.gameInstance.blockHandScore.ToString());
             }
             else if(currentHand == PlayerHand.none )
             {
                 GameCondition.gameInstance.blockSitScore++;
                 UITextReference.uiInstance.blockSitScore.text = GameCondition.gameInstance.blockSitScore.ToString();
+                PlayerPrefs.SetString("blockSitScore", GameCondition.gameInstance.blockSitScore.ToString());
             }
         }
         else if(other.transform.tag == "BlockStand")
@@ -55,14 +54,18 @@ public class HandCondition : MonoBehaviour
             if(currentHand == PlayerHand.left)
             {
                 GameCondition.gameInstance.blockHandScore++;
+                PlayerPrefs.SetString("blockHandScore", GameCondition.gameInstance.blockHandScore.ToString());
             }
             else if(currentHand == PlayerHand.right )
             {
                 GameCondition.gameInstance.blockHandScore++;
+                PlayerPrefs.SetString("blockHandScore", GameCondition.gameInstance.blockHandScore.ToString());
             }
             else if(currentHand == PlayerHand.none )
             {
                 GameCondition.gameInstance.blockStrifeScore++;
+                UITextReference.uiInstance.blockStrifeScore.text = GameCondition.gameInstance.blockStrifeScore.ToString();
+                PlayerPrefs.SetString("blockStrifeScore", GameCondition.gameInstance.blockStrifeScore.ToString());
             }
         }
         Destroy(other.transform.gameObject);

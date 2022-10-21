@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3787850034794359280}
   - component: {fileID: 6094366914587561452}
   - component: {fileID: 6873145402643358369}
-  - component: {fileID: 5666285745365178632}
   - component: {fileID: 8501889712994147346}
   - component: {fileID: -2733829474412871974}
+  - component: {fileID: 1336173228484045147}
   m_Layer: 0
   m_Name: Firing_Ball_Red_Spark
   m_TagString: BallHit
@@ -87,19 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5666285745365178632
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 135087739053908687}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8501889712994147346
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -128,8 +115,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7245c88791b6f1b41bbf0a8e82d6c6f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 45
   timer: 3
+--- !u!135 &1336173228484045147
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135087739053908687}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6102150637778170350
 PrefabInstance:
   m_ObjectHideFlags: 0
