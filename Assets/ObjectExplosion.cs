@@ -11,9 +11,9 @@ public class ObjectExplosion : MonoBehaviour
         rad = 3f;
         desDel = 1f;
 
-        foreach(Transform t in transform)
+        foreach(Transform currentTransform in transform)
         {
-            Rigidbody box = t.GetComponent<Rigidbody>();
+            Rigidbody box = currentTransform.GetComponent<Rigidbody>();
             box.constraints = RigidbodyConstraints.None;
 
             if(box != null)

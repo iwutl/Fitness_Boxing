@@ -4,8 +4,11 @@ using TMPro;
 public class UITextReference : MonoBehaviour
 {
     public static UITextReference uiInstance;
-    public TextMeshProUGUI leftHandScore, rightHandScore, blockSitScore, blockStrifeScore;
-    public TextMeshProUGUI resultLeftHand, resultRightHand, resultSit, resultStrife;
+
+    [Header("On-Screen Content" + "\n" + "\n" + "1. Left Hand" + "\n" + "2. Right Hand" + "\n" + "3. Sitting"+ "\n" + "4. Strife" + "\n")]
+    public TextMeshProUGUI[] playingDisplay;
+    [Header("Floating Diplay Content" + "\n" + "\n" + "1. Total Ball" + "\n" + "2. Left Hand" + "\n" + "3. Right Hand" + "\n" + "4. Total Block" + "\n" + "5. Sitting"+ "\n" + "6. Strife" + "\n")]
+    public TextMeshProUGUI[] resultDisplay;
 
     private void Awake() {
         if(uiInstance == null)
@@ -16,9 +19,11 @@ public class UITextReference : MonoBehaviour
 
     public void ResultUpdate()
     {
-        resultLeftHand.text = PlayerPrefs.GetString("leftHandScore");
-        resultRightHand.text = PlayerPrefs.GetString("rightHandScore");
-        resultSit.text = PlayerPrefs.GetString("blockSitScore");
-        resultStrife.text = PlayerPrefs.GetString("blockStrifeScore");
+        resultDisplay[0].text = PlayerPrefs.GetString("totalBallSpawned");
+        resultDisplay[1].text = PlayerPrefs.GetString("leftHandScore");
+        resultDisplay[2].text = PlayerPrefs.GetString("rightHandScore");
+        resultDisplay[3].text = PlayerPrefs.GetString("totalBlockSpawned");
+        resultDisplay[4].text = PlayerPrefs.GetString("blockSitScore");
+        resultDisplay[5].text = PlayerPrefs.GetString("blockStrifeScore");
     }
 }
