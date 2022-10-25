@@ -3,25 +3,25 @@ using UnityEngine.Events;
 using System.Collections;
 using TMPro;
 
-public class GameBegin : MonoBehaviour
+public class PageUpdateActivation : MonoBehaviour
 {
     public TextMeshProUGUI countDownText;
     int countDownTimer;
     public UnityEvent afterCountDown;
 
-    private void Awake() {
+    private void Awake()
+    {
         countDownTimer = 3;
         countDownText.text = countDownTimer.ToString();
-        StartTheGame();
+        NextTask();
     }
 
-    void GameTimerInitialize()
+    void TaskTimerInitialize()
     {
         countDownTimer--;
-        if(countDownTimer < 1)
+        if (countDownTimer < 1)
         {
             countDownTimer = 0;
-            countDownText.transform.parent.gameObject.SetActive(false);
             afterCountDown.Invoke();
         }
         countDownText.text = countDownTimer.ToString();
@@ -29,7 +29,7 @@ public class GameBegin : MonoBehaviour
 
     IEnumerator CountDownAction()
     {
-        while(countDownTimer > 0)
+        while (countDownTimer > 0)
         {
             yield return new WaitForSeconds(0.5f);
 
@@ -38,14 +38,14 @@ public class GameBegin : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             LeanTween.scale(countDownText.gameObject, new Vector3(0, 0, 0), 0.5f).setDelay(0.25f).setEase(LeanTweenType.easeInBack);
-            
+
             yield return new WaitForSeconds(1f);
 
-            GameTimerInitialize();
+            TaskTimerInitialize();
         }
     }
 
-    public void StartTheGame()
+    public void NextTask()
     {
         StartCoroutine(CountDownAction());
     }

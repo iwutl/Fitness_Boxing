@@ -3,6 +3,14 @@ using UnityEngine;
 public class TutorialTaskFunctionalities : MonoBehaviour
 {
     public GameObject[] tutorialTasks;
+    public GameObject currentID;
+    int currentTask;
+
+    private void Start()
+    {
+        TaskUpdate(0);
+        currentID.SetActive(false);
+    }
 
     public void TaskUpdate(int count)
     {
@@ -17,5 +25,12 @@ public class TutorialTaskFunctionalities : MonoBehaviour
                 tutorialTasks[i].SetActive(false);
             }
         }
+    }
+
+    public void TaskValue()
+    {
+        currentTask++;
+        TaskUpdate(currentTask);
+        currentID.SetActive(false);
     }
 }
