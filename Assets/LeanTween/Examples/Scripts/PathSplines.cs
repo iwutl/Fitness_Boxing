@@ -30,23 +30,4 @@ public class PathSplines : MonoBehaviour {
 			LeanTween.moveSpline( avatar1, next, 6.5f); // move it back to the start without an LTSpline
 		}).setEase(LeanTweenType.easeOutQuad);
 	}
-	
-	private float iter;
-	void Update () {
-		// Or Update Manually
-		// cr.place( avatar1.transform, iter );
-
-		iter += Time.deltaTime*0.07f;
-		if(iter>1.0f)
-			iter = 0.0f;
-	}
-
-	void OnDrawGizmos(){
-		// Debug.Log("drwaing");
-		if(cr==null)
-			OnEnable();
-		Gizmos.color = Color.red;
-		if(cr!=null)
-			cr.gizmoDraw(); // To Visualize the path, use this method
-	}
 }

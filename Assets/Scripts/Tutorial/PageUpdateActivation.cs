@@ -7,12 +7,13 @@ public class PageUpdateActivation : MonoBehaviour
 {
     public TextMeshProUGUI countDownText;
     int countDownTimer;
-    public UnityEvent afterCountDown;
+    public UnityEvent preCountDown, afterCountDown;
 
     private void Awake()
     {
-        countDownTimer = 3;
+        countDownTimer = 2;
         countDownText.text = countDownTimer.ToString();
+        preCountDown.Invoke();
         NextTask();
     }
 

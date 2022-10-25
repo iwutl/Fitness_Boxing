@@ -77,7 +77,10 @@ public class HandCondition : MonoBehaviour
                 PlayerPrefs.SetString("blockStrifeScore", GameCondition.gameInstance.blockStrifeScore.ToString());
             }
         }
-        Destroy(other.gameObject);
-        GameCondition.gameInstance.GameReady(true);
+        if(other.transform.tag != "Hand")
+        {
+            Destroy(other.gameObject);
+            GameCondition.gameInstance.GameReady(true);
+        }
     }
 }

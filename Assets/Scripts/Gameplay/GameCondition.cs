@@ -14,13 +14,15 @@ public class GameCondition : MonoBehaviour
             gameInstance = this;
         }
 
+        PlayerPrefs.SetString("totalBallSpawned", "0");
         PlayerPrefs.SetString("leftHandScore", "0");
         PlayerPrefs.SetString("rightHandScore", "0");
         PlayerPrefs.SetString("ballMissedScore", "0");
+        
+        PlayerPrefs.SetString("totalBlockSpawned", "0");
         PlayerPrefs.SetString("blockSitScore", "0");
         PlayerPrefs.SetString("blockStrifeScore", "0");
-        PlayerPrefs.SetString("totalBallSpawned", "0");
-        PlayerPrefs.SetString("totalBlockSpawned", "0");
+        PlayerPrefs.SetString("blockHandScore", "0");        
     }
 
     public void GameReady(bool state)

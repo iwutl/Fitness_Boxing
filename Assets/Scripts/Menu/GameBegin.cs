@@ -7,11 +7,13 @@ public class GameBegin : MonoBehaviour
 {
     public TextMeshProUGUI countDownText;
     int countDownTimer;
+    bool startTimer;
     public UnityEvent afterCountDown;
 
     private void Awake() {
         countDownTimer = 3;
         countDownText.text = countDownTimer.ToString();
+        startTimer = false;
         StartTheGame();
     }
 
@@ -22,6 +24,7 @@ public class GameBegin : MonoBehaviour
         {
             countDownTimer = 0;
             countDownText.transform.parent.gameObject.SetActive(false);
+            startTimer = true;
             afterCountDown.Invoke();
         }
         countDownText.text = countDownTimer.ToString();
