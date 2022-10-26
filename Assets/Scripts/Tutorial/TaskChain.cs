@@ -22,11 +22,6 @@ public class TaskChain : MonoBehaviour
             movePoint[i] = moveParent.GetChild(i);
         }
 
-        StartCoroutine(PathLoop());
-    }
-
-    IEnumerator PathLoop()
-    {
         for(int i = 0; i < movePoint.Length; i++)
         {
             points[i] = movePoint[i].position;
@@ -36,7 +31,12 @@ public class TaskChain : MonoBehaviour
         {
             tempPoint[movePoint.Length - 1 - i] = movePoint[i].position;
         }
-        
+
+        StartCoroutine(PathLoop());
+    }
+
+    IEnumerator PathLoop()
+    {
         pathPoint = new LTBezierPath(points);
         LTDescr tweenPath = LeanTween.move(fireBall, pathPoint, travelSpeed);
         pathPoint = new LTBezierPath(tempPoint);
@@ -44,17 +44,31 @@ public class TaskChain : MonoBehaviour
 
         yield return new WaitForSeconds(travelSpeed);
 
-        pathPoint = new LTBezierPath(points);
-        LTDescr tweenPathOne = LeanTween.move(fireBall, pathPoint, travelSpeed);
         pathPoint = new LTBezierPath(tempPoint);
-        LTDescr tweenPathReverseOne = LeanTween.move(fireBall, pathPoint, travelSpeed).setDelay(travelSpeed);
+        LTDescr tweenPath1 = LeanTween.move(fireBall, pathPoint, travelSpeed);
+        pathPoint = new LTBezierPath(points);
+        LTDescr tweenPathReverse1 = LeanTween.move(fireBall, pathPoint, travelSpeed).setDelay(travelSpeed);
         
         yield return new WaitForSeconds(travelSpeed);
 
         pathPoint = new LTBezierPath(points);
-        LTDescr tweenPathTwo = LeanTween.move(fireBall, pathPoint, travelSpeed);
+        LTDescr tweenPath2 = LeanTween.move(fireBall, pathPoint, travelSpeed);
         pathPoint = new LTBezierPath(tempPoint);
-        LTDescr tweenPathReverseTwo = LeanTween.move(fireBall, pathPoint, travelSpeed).setDelay(travelSpeed);
+        LTDescr tweenPathReverse2 = LeanTween.move(fireBall, pathPoint, travelSpeed).setDelay(travelSpeed);
+
+        yield return new WaitForSeconds(travelSpeed);
+
+        pathPoint = new LTBezierPath(tempPoint);
+        LTDescr tweenPath3 = LeanTween.move(fireBall, pathPoint, travelSpeed);
+        pathPoint = new LTBezierPath(points);
+        LTDescr tweenPathReverse3 = LeanTween.move(fireBall, pathPoint, travelSpeed).setDelay(travelSpeed);
+        
+        yield return new WaitForSeconds(travelSpeed);
+
+        pathPoint = new LTBezierPath(points);
+        LTDescr tweenPath4 = LeanTween.move(fireBall, pathPoint, travelSpeed);
+        pathPoint = new LTBezierPath(tempPoint);
+        LTDescr tweenPathReverse4 = LeanTween.move(fireBall, pathPoint, travelSpeed).setDelay(travelSpeed);
 
         yield return new WaitForSeconds(travelSpeed);
     }
