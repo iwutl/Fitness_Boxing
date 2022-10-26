@@ -8,6 +8,7 @@ public class FireballRandomizer : MonoBehaviour
     public Transform[] firingTarget,firingPoints,sitTarget;
     public GameObject[] firePrefab,logPrefab;
     public int sampleScale;
+    float spawnTime;
 
     [Header("Output")]
     public int currentPos;
@@ -37,36 +38,46 @@ public class FireballRandomizer : MonoBehaviour
         }
     }
 
-    void Update()
+    void BallSpawner()
     {
-        if(currentBall == null && GameCondition.gameInstance.isGameReady && !GameCondition.gameInstance.isGameEnd)
+        spawnTime += Time.deltaTime;
+        if(spawnTime >= 1)
         {
+            spawnTime = 0;
             RandomFire();
         }
     }
 
+    void Update()
+    {
+        BallSpawner();
+    }
+
     public void RandomFire()
     {
-        int tempPos = Random.Range(0,firingType.Count);
-        currentPos = firingType[tempPos];
-
-        if(currentPos>=0)
+        if(GameCondition.gameInstance.isGameReady && !GameCondition.gameInstance.isGameEnd)
         {
-            int randomBall = Random.Range(0,firePrefab.Length);
+            int tempPos = Random.Range(0,firingType.Count);
+            currentPos = firingType[tempPos];
 
-            currentBall = Instantiate(firePrefab[randomBall],firingPoints[currentPos].position,firingPoints[currentPos].rotation);
+            if(currentPos>=0)
+            {
+                int randomBall = Random.Range(0,firePrefab.Length);
 
-            GameCondition.gameInstance.totalBallSpawned++;
-            PlayerPrefs.SetString("totalBallSpawned", GameCondition.gameInstance.totalBallSpawned.ToString());
-        }
-        else
-        {
-            int randomLog = Random.Range(0,logPrefab.Length);
+                currentBall = Instantiate(firePrefab[randomBall],firingPoints[currentPos].position,firingPoints[currentPos].rotation);
 
-            currentBall = Instantiate(logPrefab[randomLog], sitTarget[randomLog].position,(sitTarget[randomLog].rotation * logPrefab[randomLog].transform.rotation));
+                GameCondition.gameInstance.totalBallSpawned++;
+                PlayerPrefs.SetString("totalBallSpawned", GameCondition.gameInstance.totalBallSpawned.ToString());
+            }
+            else
+            {
+                int randomLog = Random.Range(0,logPrefab.Length);
 
-            GameCondition.gameInstance.totalBlockSpawned++;
-            PlayerPrefs.SetString("totalBlockSpawned", GameCondition.gameInstance.totalBlockSpawned.ToString());
+                currentBall = Instantiate(logPrefab[randomLog], sitTarget[randomLog].position,(sitTarget[randomLog].rotation * logPrefab[randomLog].transform.rotation));
+
+                GameCondition.gameInstance.totalBlockSpawned++;
+                PlayerPrefs.SetString("totalBlockSpawned", GameCondition.gameInstance.totalBlockSpawned.ToString());
+            }
         }
     }
 }
